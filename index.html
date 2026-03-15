@@ -3,1140 +3,748 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Muhammad Usman Qadeer — Energy Systems Analyst</title>
+  <title>Muhammad Usman Qadeer — Energy Systems Consultant</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0a0f1a;
-      --bg2: #0f1625;
-      --card: #131c2e;
-      --card2: #192236;
-      --accent: #00d4a8;
-      --accent2: #0099ff;
-      --accent3: #7b5ea7;
-      --text: #e8edf5;
-      --muted: #7b8fb5;
-      --border: rgba(0, 212, 168, 0.15);
-      --glow: rgba(0, 212, 168, 0.08);
+      --ink: #0e0e0e;
+      --paper: #f5f2ec;
+      --warm: #f0ebe0;
+      --card: #ffffff;
+      --accent: #c8651a;
+      --accent2: #2a5c8f;
+      --accent-light: rgba(200,101,26,0.1);
+      --muted: #7a7267;
+      --border: #e2ddd5;
+      --strong: #1a1a1a;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.7;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
       overflow-x: hidden;
+      cursor: none;
     }
+
+    /* CURSOR */
+    .cursor {
+      position: fixed; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%); mix-blend-mode: multiply;
+      transition: width 0.2s, height 0.2s;
+    }
+    .cursor-ring {
+      position: fixed; width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--accent); pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%); opacity: 0.5;
+    }
+    a:hover ~ .cursor, button:hover ~ .cursor { width: 20px; height: 20px; }
 
     /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 4rem;
-      background: rgba(10, 15, 26, 0.85);
-      backdrop-filter: blur(20px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 5vw;
+      background: rgba(245,242,236,0.92);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      text-decoration: none;
+      font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.15rem;
+      color: var(--ink); text-decoration: none; letter-spacing: -0.01em;
     }
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
     .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      color: var(--muted); text-decoration: none; font-size: 0.85rem;
+      font-weight: 500; letter-spacing: 0.04em; transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      background: var(--ink) !important; color: var(--paper) !important;
+      padding: 0.6rem 1.4rem; border-radius: 4px; font-weight: 500 !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: white !important; }
 
     /* HERO */
     .hero {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 8rem 4rem 4rem;
-      position: relative;
-      overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 8rem 5vw 4rem; gap: 4rem;
+      position: relative; overflow: hidden;
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-    .hero-bg::before {
+    .hero::after {
       content: '';
-      position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 60vw;
-      height: 60vw;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,212,168,0.06) 0%, transparent 70%);
+      position: absolute; right: -5%; top: -10%;
+      width: 50%; height: 120%;
+      background: var(--warm);
+      border-radius: 0 0 0 60% / 0 0 0 40%;
+      z-index: 0;
     }
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      bottom: -10%;
-      left: -5%;
-      width: 40vw;
-      height: 40vw;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,153,255,0.05) 0%, transparent 70%);
-    }
-    /* Grid lines background */
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,212,168,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,212,168,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
+    .hero-left, .hero-right { position: relative; z-index: 1; }
 
-    .hero-content {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1.8rem;
     }
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(0,212,168,0.1);
-      border: 1px solid rgba(0,212,168,0.25);
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      border-radius: 100px;
-      margin-bottom: 2rem;
-      animation: fadeUp 0.6s ease both;
-    }
-    .hero-tag::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
 
     h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-      animation: fadeUp 0.6s 0.1s ease both;
+      font-family: 'Fraunces', serif; font-weight: 700;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      line-height: 1.05; letter-spacing: -0.03em;
+      color: var(--strong); margin-bottom: 1.8rem;
     }
-    .hero-title-line2 {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(232,237,245,0.4);
+    h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+    .hero-body {
+      font-size: 1.05rem; color: var(--muted); line-height: 1.8;
+      max-width: 480px; margin-bottom: 2.5rem;
     }
-    .hero-subtitle {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      animation: fadeUp 0.6s 0.2s ease both;
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-dark {
+      background: var(--ink); color: var(--paper);
+      padding: 0.9rem 2.2rem; border-radius: 4px;
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
     }
-    .hero-desc {
-      max-width: 600px;
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 3rem;
-      animation: fadeUp 0.6s 0.3s ease both;
+    .btn-dark:hover { background: var(--accent); transform: translateY(-2px); }
+    .btn-ghost {
+      border: 1.5px solid var(--ink); color: var(--ink);
+      padding: 0.9rem 2.2rem; border-radius: 4px;
+      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.02em; transition: all 0.2s;
     }
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      animation: fadeUp 0.6s 0.4s ease both;
+    .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+    .trust-bar { display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap; }
+    .trust-item { display: flex; flex-direction: column; }
+    .trust-num {
+      font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700;
+      color: var(--strong); line-height: 1;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #0a0f1a;
-      padding: 0.85rem 2rem;
-      border-radius: 6px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      text-decoration: none;
-      letter-spacing: 0.03em;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+    .trust-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+    .trust-divider { width: 1px; background: var(--border); align-self: stretch; }
+
+    /* Hero card stack */
+    .hero-card-stack { position: relative; height: 480px; }
+    .hero-card {
+      position: absolute; background: var(--card);
+      border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.07);
     }
-    .btn-primary:hover {
-      background: #00f0c0;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0,212,168,0.3);
+    .hero-card-main { width: 100%; top: 20px; left: 0; animation: floatA 6s ease-in-out infinite; }
+    .hero-card-mini { width: 65%; bottom: 20px; right: 0; animation: floatB 5s ease-in-out infinite; background: var(--ink); color: var(--paper); border-color: transparent; }
+    @keyframes floatA { 0%,100% { transform: translateY(0px) rotate(-1deg); } 50% { transform: translateY(-12px) rotate(-1deg); } }
+    @keyframes floatB { 0%,100% { transform: translateY(0px) rotate(1.5deg); } 50% { transform: translateY(-8px) rotate(1.5deg); } }
+    .card-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .card-label-inv { color: rgba(245,242,236,0.4); }
+    .card-service-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .card-service-list li { display: flex; align-items: center; gap: 0.7rem; font-size: 0.9rem; font-weight: 500; color: var(--strong); }
+    .card-service-list li .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .card-mini-title { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.8rem; }
+    .card-mini-sub { font-size: 0.8rem; opacity: 0.5; }
+    .avail-dot { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 600; color: #2db37a; margin-top: 1rem; }
+    .avail-dot::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #2db37a; animation: blink 1.5s infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* SHARED SECTION */
+    .section { padding: 7rem 5vw; }
+    .section-inner { max-width: 1160px; margin: 0 auto; }
+    .section-header { margin-bottom: 4rem; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
     }
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.85rem 2rem;
-      border-radius: 6px;
-      font-weight: 400;
-      font-size: 0.9rem;
-      text-decoration: none;
-      letter-spacing: 0.03em;
-      transition: all 0.2s;
+    .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+    h2 {
+      font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; color: var(--strong);
     }
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-2px);
+    h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+    /* SERVICES */
+    .services-bg { background: var(--warm); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+    }
+    .service-tile {
+      background: var(--card); padding: 2.8rem 2.5rem;
+      position: relative; transition: background 0.25s; cursor: default;
+    }
+    .service-tile:hover { background: var(--ink); }
+    .service-tile:hover .service-name,
+    .service-tile:hover .service-desc { color: rgba(245,242,236,0.85); }
+    .service-tile:hover .service-num { color: rgba(245,242,236,0.04) !important; }
+    .service-tile:hover .service-icon-bg { background: rgba(255,255,255,0.05); }
+    .service-tile:hover .stag { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); color: rgba(245,242,236,0.5); }
+    .service-num {
+      position: absolute; top: 2rem; right: 2rem;
+      font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 700;
+      color: rgba(0,0,0,0.04); line-height: 1; transition: color 0.25s;
+    }
+    .service-icon-bg {
+      width: 48px; height: 48px; background: var(--accent-light);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.5rem; transition: background 0.25s;
+    }
+    .service-name { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; color: var(--strong); margin-bottom: 0.8rem; transition: color 0.25s; }
+    .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; transition: color 0.25s; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; }
+    .stag {
+      font-size: 0.72rem; font-weight: 500;
+      background: var(--warm); border: 1px solid var(--border);
+      color: var(--muted); padding: 0.25rem 0.65rem; border-radius: 100px;
+      transition: all 0.25s;
     }
 
-    .hero-stats {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      animation: fadeLeft 0.8s 0.5s ease both;
+    /* WHY */
+    .why-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; }
+    .why-left p { color: var(--muted); line-height: 1.8; font-size: 1rem; margin-top: 1.2rem; }
+    .why-item {
+      display: flex; gap: 2rem; align-items: flex-start;
+      padding: 2rem 0; border-bottom: 1px solid var(--border);
     }
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
-      text-align: center;
-      min-width: 160px;
-    }
-    .stat-number {
-      font-family: 'Syne', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 0.3rem;
-    }
+    .why-item:first-child { padding-top: 0; }
+    .why-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .why-idx { font-family: 'Fraunces', serif; font-size: 0.8rem; font-weight: 600; color: var(--accent); min-width: 28px; padding-top: 0.2rem; }
+    .why-body-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; color: var(--strong); margin-bottom: 0.4rem; }
+    .why-body-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* EXPERTISE */
+    .expertise-bg { background: var(--ink); color: var(--paper); }
+    .expertise-bg h2 { color: var(--paper); }
+    .expertise-bg .eyebrow { color: var(--accent); }
+    .expertise-bg .eyebrow::before { background: var(--accent); }
+    .expertise-bg .section-header p { color: rgba(245,242,236,0.55); }
+    .expertise-cols {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; background: rgba(255,255,255,0.06);
+      border-radius: 16px; overflow: hidden; margin-top: 3rem;
     }
-    @keyframes fadeLeft {
-      from { opacity: 0; transform: translateX(40px) translateY(-50%); }
-      to { opacity: 1; transform: translateX(0) translateY(-50%); }
-    }
+    .exp-col { background: var(--ink); padding: 2.5rem 2rem; }
+    .exp-col-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .exp-items { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .exp-items li { font-size: 0.88rem; color: rgba(245,242,236,0.6); display: flex; align-items: center; gap: 0.6rem; }
+    .exp-items li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 
-    /* SECTIONS */
-    section {
-      padding: 6rem 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
+    /* PROCESS */
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 1rem;
     }
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.8rem;
+    .process-step { background: var(--card); padding: 2.5rem 2rem; position: relative; }
+    .step-arrow {
+      position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
+      width: 28px; height: 28px; background: var(--warm);
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; z-index: 2; color: var(--muted);
     }
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      letter-spacing: -0.02em;
-      margin-bottom: 3rem;
-      line-height: 1.1;
-    }
-    .divider {
-      width: 40px;
-      height: 3px;
-      background: var(--accent);
-      margin-bottom: 3rem;
-      border-radius: 2px;
-    }
+    .process-step:last-child .step-arrow { display: none; }
+    .step-num { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 700; color: rgba(0,0,0,0.05); line-height: 1; margin-bottom: 1rem; }
+    .step-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; color: var(--strong); margin-bottom: 0.6rem; }
+    .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
 
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
+    /* BACKGROUND */
+    .cred-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .cred-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2rem; transition: transform 0.2s, border-color 0.2s;
     }
-    .about-text p {
-      color: var(--muted);
-      margin-bottom: 1.2rem;
-      font-size: 1rem;
-      line-height: 1.8;
-    }
-    .contact-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-    .contact-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    .contact-list .icon {
-      width: 32px;
-      height: 32px;
-      background: var(--card2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-    }
-
-    /* SKILLS */
-    .skills-section { background: var(--bg2); padding: 6rem 4rem; }
-    .skills-inner { max-width: 1200px; margin: 0 auto; }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .skill-category {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .skill-category:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0,212,168,0.35);
-    }
-    .skill-cat-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.2rem;
-    }
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .skill-tag {
-      background: rgba(0,212,168,0.07);
-      border: 1px solid rgba(0,212,168,0.15);
-      color: var(--text);
-      font-size: 0.8rem;
-      padding: 0.35rem 0.85rem;
-      border-radius: 100px;
-    }
-
-    /* EXPERIENCE */
-    .timeline {
-      position: relative;
-      padding-left: 2rem;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-    }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 3.5rem;
-      padding-left: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease both;
-    }
-    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
-    .timeline-item:nth-child(2) { animation-delay: 0.2s; }
-    .timeline-item:nth-child(3) { animation-delay: 0.3s; }
-    .timeline-item:nth-child(4) { animation-delay: 0.4s; }
-
-    .timeline-dot {
-      position: absolute;
-      left: -2.4rem;
-      top: 0.4rem;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 0 3px rgba(0,212,168,0.2);
-    }
-    .timeline-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.3rem;
-    }
-    .timeline-company {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text);
-    }
-    .timeline-period {
-      font-size: 0.8rem;
-      color: var(--accent);
-      background: rgba(0,212,168,0.08);
-      border: 1px solid rgba(0,212,168,0.2);
-      padding: 0.2rem 0.8rem;
-      border-radius: 100px;
-      white-space: nowrap;
-    }
-    .timeline-role {
-      font-size: 0.9rem;
-      color: var(--muted);
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-    .timeline-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .timeline-bullets li {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.6;
-      padding-left: 1rem;
-      position: relative;
-    }
-    .timeline-bullets li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-size: 0.7rem;
-      top: 0.2rem;
-    }
-
-    /* PROJECTS */
-    .projects-section { background: var(--bg2); padding: 6rem 4rem; }
-    .projects-inner { max-width: 1200px; margin: 0 auto; }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .project-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0,212,168,0.3);
-    }
-    .project-card:hover::before { opacity: 1; }
-    .project-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .project-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-    .project-highlights {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-    .project-highlights li {
-      font-size: 0.82rem;
-      color: var(--muted);
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
-    .project-highlights li::before {
-      content: '✦';
-      color: var(--accent);
-      font-size: 0.6rem;
-      flex-shrink: 0;
-      margin-top: 0.35rem;
-    }
-
-    /* EDUCATION */
-    .edu-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .edu-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .edu-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0,212,168,0.35);
-    }
-    .edu-degree {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-    }
-    .edu-school {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-    .edu-meta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .edu-badge {
-      font-size: 0.8rem;
-      padding: 0.2rem 0.8rem;
-      border-radius: 100px;
-      background: rgba(0,153,255,0.1);
-      border: 1px solid rgba(0,153,255,0.2);
-      color: var(--accent2);
-    }
-
-    /* CERTIFICATIONS */
-    .certs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-    }
-    .cert-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .cert-card:hover {
-      border-color: rgba(0,212,168,0.3);
-      transform: translateY(-2px);
-    }
-    .cert-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(0,212,168,0.1);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .cert-name {
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 0.25rem;
-      line-height: 1.4;
-    }
-    .cert-org {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
+    .cred-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .cred-org { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 600; color: var(--strong); margin-bottom: 0.3rem; }
+    .cred-role { font-size: 0.82rem; color: var(--accent); font-weight: 500; margin-bottom: 0.8rem; }
+    .cred-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
 
     /* PUBLICATIONS */
-    .pub-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
+    .pub-row {
+      display: grid; grid-template-columns: 110px 1fr auto;
+      align-items: center; gap: 2rem; padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
     }
-    .pub-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-      transition: border-color 0.2s;
+    .pub-row:first-child { border-top: 1px solid var(--border); }
+    .pub-year-badge { background: var(--accent-light); color: var(--accent); font-size: 0.8rem; font-weight: 600; padding: 0.35rem 0.9rem; border-radius: 100px; text-align: center; }
+    .pub-title-text { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; color: var(--strong); margin-bottom: 0.3rem; }
+    .pub-venue-text { font-size: 0.82rem; color: var(--muted); }
+    .pub-venue-badge { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent2); background: rgba(42,92,143,0.08); border: 1px solid rgba(42,92,143,0.15); padding: 0.3rem 0.9rem; border-radius: 100px; white-space: nowrap; }
+
+    /* CTA */
+    .cta-section { background: var(--accent); }
+    .cta-inner {
+      max-width: 1160px; margin: 0 auto; padding: 5rem 5vw;
+      display: flex; justify-content: space-between; align-items: center; gap: 3rem; flex-wrap: wrap;
     }
-    .pub-card:hover { border-color: rgba(0,212,168,0.3); }
-    .pub-year {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--accent);
-      opacity: 0.4;
-      min-width: 56px;
+    .cta-text h2 { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); color: white; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.6rem; }
+    .cta-text p { color: rgba(255,255,255,0.75); font-size: 1rem; }
+    .btn-white {
+      background: white; color: var(--accent); padding: 1rem 2.4rem; border-radius: 4px;
+      font-weight: 700; font-size: 0.95rem; text-decoration: none; white-space: nowrap;
+      transition: transform 0.2s, box-shadow 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
     }
-    .pub-title {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-      line-height: 1.5;
-    }
-    .pub-venue {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
 
     /* FOOTER */
-    footer {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      padding: 3rem 4rem;
-      text-align: center;
+    footer { background: var(--ink); color: var(--paper); padding: 4rem 5vw 2rem; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 3rem; flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255,255,255,0.07); padding-bottom: 3rem; margin-bottom: 2rem;
     }
-    .footer-name {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    .footer-sub {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      list-style: none;
-    }
-    .footer-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--accent); }
-    .footer-copy {
-      margin-top: 2rem;
-      font-size: 0.78rem;
-      color: rgba(123,143,181,0.4);
-    }
+    .footer-brand .brand-name { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 700; color: var(--paper); margin-bottom: 0.5rem; }
+    .footer-brand .brand-sub { font-size: 0.85rem; color: rgba(245,242,236,0.4); }
+    .footer-contact { display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-contact a { font-size: 0.88rem; color: rgba(245,242,236,0.5); text-decoration: none; transition: color 0.2s; }
+    .footer-contact a:hover { color: var(--accent); }
+    .footer-bottom { display: flex; justify-content: space-between; font-size: 0.78rem; color: rgba(245,242,236,0.25); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
 
     /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 2rem; }
-      .nav-links { gap: 1.5rem; }
-      .hero { padding: 7rem 2rem 4rem; }
-      section { padding: 5rem 2rem; }
-      .about-grid,
-      .projects-grid,
-      .edu-grid { grid-template-columns: 1fr; }
-      .hero-stats { display: none; }
-      .skills-section, .projects-section { padding: 5rem 2rem; }
-      footer { padding: 2rem; }
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero::after { display: none; }
+      .hero-card-stack { display: none; }
+      .services-grid, .expertise-cols, .process-steps, .cred-grid { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .nav-links { display: none; }
-    }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+      .section { padding: 5rem 5vw; }
+      .services-grid, .expertise-cols, .process-steps, .cred-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .pub-row { grid-template-columns: 1fr; gap: 0.5rem; }
+      .cta-inner { flex-direction: column; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; }
+      body { cursor: auto; }
+      .cursor, .cursor-ring { display: none; }
     }
   </style>
 </head>
 <body>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">MUQ</a>
+  <a href="#" class="nav-logo">Usman <span>Qadeer</span></a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#publications">Publications</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#contact" class="nav-cta">Work with Me</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home" style="max-width:100%;padding:8rem 4rem 4rem;">
-  <div class="hero-bg"><div class="hero-grid"></div></div>
-  <div class="hero-content">
-    <div class="hero-tag">Available for opportunities</div>
-    <h1>
-      Muhammad<br>
-      <span class="hero-title-line2">Usman Qadeer</span>
-    </h1>
-    <div class="hero-subtitle">Energy Systems Analyst</div>
-    <p class="hero-desc">
-      Electrical Engineer with 7+ years of experience in energy system analysis,
-      demand forecasting, and power distribution operations. Currently shaping
-      Pakistan's national energy planning at PPMC.
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Energy Systems Consultant — Pakistan</div>
+    <h1>Data-driven<br><em>energy insights</em><br>that move<br>policy forward</h1>
+    <p class="hero-body">
+      I help government agencies, utilities, and research institutions make
+      smarter energy decisions — through forecasting models, sector analysis,
+      and evidence-based planning grounded in 7+ years of hands-on experience.
     </p>
-    <div class="hero-ctas">
-      <a href="#experience" class="btn-primary">View Experience →</a>
-      <a href="mailto:usmanqadeer@yahoo.com" class="btn-outline">Get in Touch</a>
+    <div class="hero-actions">
+      <a href="#services" class="btn-dark">Explore Services →</a>
+      <a href="mailto:usmanqadeer@yahoo.com" class="btn-ghost">Get in Touch</a>
     </div>
-
-    <div class="hero-stats">
-      <div class="stat-card">
-        <div class="stat-number">7+</div>
-        <div class="stat-label">Years Experience</div>
+    <div class="trust-bar">
+      <div class="trust-item">
+        <span class="trust-num">7+</span>
+        <span class="trust-label">Years in Energy</span>
       </div>
-      <div class="stat-card">
-        <div class="stat-number">3.88</div>
-        <div class="stat-label">Masters CGPA</div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <span class="trust-num">3</span>
+        <span class="trust-label">Sectors Served</span>
       </div>
-      <div class="stat-card">
-        <div class="stat-number">2</div>
-        <div class="stat-label">IEEE Publications</div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <span class="trust-num">2×</span>
+        <span class="trust-label">IEEE Author</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card-stack">
+      <div class="hero-card hero-card-main">
+        <div class="card-label">Core Services</div>
+        <ul class="card-service-list">
+          <li><span class="dot"></span>Energy Demand Forecasting</li>
+          <li><span class="dot"></span>Sector Analytics &amp; Research</li>
+          <li><span class="dot"></span>Power System Simulation</li>
+          <li><span class="dot"></span>Policy &amp; Planning Reports</li>
+          <li><span class="dot"></span>Dashboard &amp; KPI Development</li>
+        </ul>
+        <div class="avail-dot">Available for new engagements</div>
+      </div>
+      <div class="hero-card hero-card-mini">
+        <div class="card-label card-label-inv">Current Engagement</div>
+        <div class="card-mini-title">National Energy Planning — PPMC</div>
+        <div class="card-mini-sub">Integrated Energy Planning (IEP) · Islamabad</div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="reveal">
-    <div class="section-label">Who I Am</div>
-    <h2 class="section-title">About Me</h2>
-    <div class="divider"></div>
-  </div>
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>
-        I'm an Electrical Engineer specializing in energy system analysis, market research,
-        and power distribution operations. Currently serving as Assistant Specialist Planning
-        at the Power Planning and Monitoring Company (PPMC) in Islamabad, where I contribute
-        to Pakistan's Integrated Energy Planning (IEP).
-      </p>
-      <p>
-        My work bridges research and operations — from developing deep learning–based demand
-        forecasting models at LUMS to managing LV/HV distribution networks at LESCO.
-        I'm passionate about data-driven approaches to energy transition and sustainable power systems.
-      </p>
-      <p>
-        With a strong foundation in Python, deep learning, and energy modeling tools (OSeMOSYS, LEAP),
-        I translate complex energy datasets into actionable insights for policy and investment decisions.
-      </p>
+<!-- SERVICES -->
+<div class="section services-bg" id="services">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">What I Offer</div>
+      <h2>Services built around<br><em>real energy challenges</em></h2>
     </div>
-    <div class="reveal">
-      <ul class="contact-list">
-        <li>
-          <span class="icon">📍</span>
-          Pakistan
-        </li>
-        <li>
-          <span class="icon">📧</span>
-          usmanqadeer@yahoo.com
-        </li>
-        <li>
-          <span class="icon">📞</span>
-          +92 336 4484413
-        </li>
-        <li>
-          <span class="icon">🎓</span>
-          M.S. Electrical Engineering — UET Lahore
-        </li>
-        <li>
-          <span class="icon">⚡</span>
-          Energy Systems &amp; National Planning
-        </li>
-        <li>
-          <span class="icon">🔬</span>
-          2× IEEE Published Researcher
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<div class="skills-section" id="skills">
-  <div class="skills-inner">
-    <div class="reveal">
-      <div class="section-label">Capabilities</div>
-      <h2 class="section-title">Technical Skills</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-category reveal">
-        <div class="skill-cat-title">⚡ Energy &amp; Power Systems</div>
-        <div class="skill-tags">
-          <span class="skill-tag">PowerWorld Simulator</span>
-          <span class="skill-tag">LEAP</span>
-          <span class="skill-tag">OSeMOSYS</span>
-          <span class="skill-tag">FINPLAN</span>
-          <span class="skill-tag">Multisim</span>
-          <span class="skill-tag">Simulink</span>
-          <span class="skill-tag">FlexTool</span>
+    <div class="services-grid">
+      <div class="service-tile reveal">
+        <div class="service-num">01</div>
+        <div class="service-icon-bg">📈</div>
+        <div class="service-name">Demand Forecasting</div>
+        <p class="service-desc">Short- and long-term electricity demand models using deep learning and statistical methods, tailored to seasonal patterns and policy scenarios.</p>
+        <div class="service-tags">
+          <span class="stag">LSTM / ANN</span><span class="stag">Python</span>
+          <span class="stag">Time-Series</span><span class="stag">Power BI</span>
         </div>
       </div>
-      <div class="skill-category reveal">
-        <div class="skill-cat-title">📊 Data Analysis &amp; Visualization</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Power BI</span>
-          <span class="skill-tag">R</span>
-          <span class="skill-tag">Google Data Studio</span>
-          <span class="skill-tag">Forecasting Models</span>
-          <span class="skill-tag">LSTM / ANN</span>
+      <div class="service-tile reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <div class="service-icon-bg">🗺️</div>
+        <div class="service-name">Energy System Modeling</div>
+        <p class="service-desc">Long-term scenario development, transition pathway analysis, and supply-demand balancing using industry-standard modeling frameworks.</p>
+        <div class="service-tags">
+          <span class="stag">OSeMOSYS</span><span class="stag">LEAP</span>
+          <span class="stag">FINPLAN</span><span class="stag">FlexTool</span>
         </div>
       </div>
-      <div class="skill-category reveal">
-        <div class="skill-cat-title">🧠 Machine Learning</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Deep Learning</span>
-          <span class="skill-tag">Time-Series Analysis</span>
-          <span class="skill-tag">Demand Forecasting</span>
-          <span class="skill-tag">Load Flow Studies</span>
-          <span class="skill-tag">Pattern Recognition</span>
+      <div class="service-tile reveal reveal-delay-2">
+        <div class="service-num">03</div>
+        <div class="service-icon-bg">⚡</div>
+        <div class="service-name">Power Grid Analysis</div>
+        <p class="service-desc">Load flow studies, performance diagnostics, energy loss analysis, and distribution network assessment to improve reliability and efficiency.</p>
+        <div class="service-tags">
+          <span class="stag">PowerWorld</span><span class="stag">Simulink</span>
+          <span class="stag">LV/HV Networks</span>
         </div>
       </div>
-      <div class="skill-category reveal">
-        <div class="skill-cat-title">🛠 Tools &amp; Other</div>
-        <div class="skill-tags">
-          <span class="skill-tag">KPI Tracking</span>
-          <span class="skill-tag">Dashboard Development</span>
-          <span class="skill-tag">MS Office</span>
-          <span class="skill-tag">Embedded C</span>
-          <span class="skill-tag">Documentation</span>
+      <div class="service-tile reveal">
+        <div class="service-num">04</div>
+        <div class="service-icon-bg">📊</div>
+        <div class="service-name">Sector Research &amp; Analytics</div>
+        <p class="service-desc">In-depth research on energy consumption trends, generation capacity, policy impacts, and market dynamics translated into clear, actionable reports.</p>
+        <div class="service-tags">
+          <span class="stag">Market Research</span><span class="stag">Policy Analysis</span>
+          <span class="stag">R &amp; Python</span>
+        </div>
+      </div>
+      <div class="service-tile reveal reveal-delay-1">
+        <div class="service-num">05</div>
+        <div class="service-icon-bg">🖥️</div>
+        <div class="service-name">Dashboards &amp; KPI Systems</div>
+        <p class="service-desc">Interactive dashboards for energy system monitoring, KPI tracking, and stakeholder reporting — built in Power BI or Google Data Studio.</p>
+        <div class="service-tags">
+          <span class="stag">Power BI</span><span class="stag">Data Studio</span>
+          <span class="stag">KPI Design</span>
+        </div>
+      </div>
+      <div class="service-tile reveal reveal-delay-2">
+        <div class="service-num">06</div>
+        <div class="service-icon-bg">📝</div>
+        <div class="service-name">Planning Reports &amp; Briefs</div>
+        <p class="service-desc">Technical writing for policy briefs, investment analysis, and planning documents — bridging engineering data and executive communication.</p>
+        <div class="service-tags">
+          <span class="stag">Policy Briefs</span><span class="stag">Technical Reports</span>
+          <span class="stag">IEP Support</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="reveal">
-    <div class="section-label">Career</div>
-    <h2 class="section-title">Work Experience</h2>
-    <div class="divider"></div>
-  </div>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-header">
-        <div class="timeline-company">Power Planning &amp; Monitoring Company (PPMC)</div>
-        <span class="timeline-period">Oct 2025 – Present</span>
+<!-- WHY ME -->
+<div class="section" id="why">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="why-left reveal">
+        <div class="eyebrow">Why Work With Me</div>
+        <h2>The analyst who's<br><em>been in the field</em></h2>
+        <p>I've operated distribution networks, built forecasting models from scratch, and contributed to national planning documents — not just studied them. That practical depth is what sets my work apart.</p>
       </div>
-      <div class="timeline-role">Assistant Specialist Planning — Islamabad, Pakistan</div>
-      <ul class="timeline-bullets">
-        <li>Contribute to Integrated Energy Planning (IEP) by collecting, validating, and analyzing national energy sector datasets.</li>
-        <li>Support medium- and long-term electricity demand and supply forecasting using statistical and analytical tools.</li>
-        <li>Conduct sector research on energy consumption patterns, generation capacity, and policy impacts.</li>
-        <li>Prepare analytical reports, dashboards, and policy briefs for internal teams and government stakeholders.</li>
-        <li>Coordinate with utilities, regulators, and government institutions to support evidence-based energy planning.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-header">
-        <div class="timeline-company">Lahore Electric Supply Company (LESCO)</div>
-        <span class="timeline-period">Apr 2021 – Sep 2025</span>
+      <div class="why-right">
+        <div class="why-item reveal">
+          <div class="why-idx">01</div>
+          <div>
+            <div class="why-body-title">Research + Operations Background</div>
+            <p class="why-body-text">From 3 years of academic research at LUMS to 4+ years managing real distribution infrastructure at LESCO, I bring both rigorous methodology and operational realism to every engagement.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-idx">02</div>
+          <div>
+            <div class="why-body-title">National-Scale Context</div>
+            <p class="why-body-text">Currently contributing to Pakistan's Integrated Energy Planning at PPMC, I understand the data sources, institutional landscape, and policy constraints that shape energy decisions at scale.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-idx">03</div>
+          <div>
+            <div class="why-body-title">End-to-End Delivery</div>
+            <p class="why-body-text">I handle the full pipeline — from raw dataset cleaning and model development to interactive dashboards and executive-ready reports — so you get a complete, usable deliverable.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-idx">04</div>
+          <div>
+            <div class="why-body-title">Peer-Reviewed Credibility</div>
+            <p class="why-body-text">Published in IEEE venues including ICIP 2021. I apply the same rigor and evidence standards to consulting engagements that I bring to academic research.</p>
+          </div>
+        </div>
       </div>
-      <div class="timeline-role">Assistant Manager Operations — Lahore, Pakistan</div>
-      <ul class="timeline-bullets">
-        <li>Managed operation and performance monitoring of LV/HV power distribution networks, transformers, and metering systems.</li>
-        <li>Analyzed energy loss trends, billing performance, and network efficiency metrics using operational data.</li>
-        <li>Led installation of capacitor banks, D-fuses, HV poles, and control panels to enhance grid efficiency.</li>
-        <li>Developed automated tools to streamline energy data analysis and performance monitoring.</li>
-        <li>Conducted data-driven analysis of distribution performance to support operational planning and investment decisions.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-header">
-        <div class="timeline-company">LUMS Energy Institute</div>
-        <span class="timeline-period">Sep 2018 – Apr 2021</span>
-      </div>
-      <div class="timeline-role">Research Assistant — Lahore, Pakistan</div>
-      <ul class="timeline-bullets">
-        <li>Conducted simulations and load flow studies using PowerWorld and Simulink to optimize grid reliability.</li>
-        <li>Developed short-term energy forecasting models using deep learning techniques (LSTM/ANN).</li>
-        <li>Built performance dashboards with Google Data Studio and Python for energy system monitoring.</li>
-        <li>Performed data analysis and visualization for energy systems research projects.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot" style="background:var(--muted);box-shadow:none;"></div>
-      <div class="timeline-header">
-        <div class="timeline-company">Pak Elektron Limited (PEL)</div>
-        <span class="timeline-period">Jun – Aug 2016</span>
-      </div>
-      <div class="timeline-role">Engineering Intern</div>
-      <ul class="timeline-bullets">
-        <li>Gained exposure to manufacturing and testing processes of energy meters and distribution transformers.</li>
-        <li>Observed equipment testing and quality assurance procedures in meter and transformer production.</li>
-      </ul>
     </div>
   </div>
-</section>
+</div>
 
-<!-- PROJECTS -->
-<div class="projects-section" id="projects">
-  <div class="projects-inner">
-    <div class="reveal">
-      <div class="section-label">Portfolio</div>
-      <h2 class="section-title">Key Projects</h2>
-      <div class="divider"></div>
+<!-- EXPERTISE -->
+<div class="section expertise-bg" id="expertise">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Technical Depth</div>
+      <h2>Full-stack energy expertise</h2>
+      <p style="margin-top:1rem; max-width:540px; font-size:1rem;">From simulation software to machine learning pipelines — a complete toolkit for modern energy analysis.</p>
     </div>
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-num">Project 01</div>
-        <div class="project-title">Integrated Energy Planning (IEP)</div>
-        <p class="project-desc">
-          National-scale energy planning initiative contributing to Pakistan's
-          long-term energy transition strategy, covering generation, transmission,
-          and final consumption analysis.
-        </p>
-        <ul class="project-highlights">
-          <li>Collected and analyzed multi-sector energy datasets from national reports and policy documents</li>
-          <li>Utilized OSeMOSYS and LEAP for scenario development and demand projections</li>
-          <li>Produced analytical briefs used by planning teams for national energy policy development</li>
+    <div class="expertise-cols">
+      <div class="exp-col reveal">
+        <div class="exp-col-title">Energy Modeling</div>
+        <ul class="exp-items">
+          <li>OSeMOSYS</li><li>LEAP</li><li>FINPLAN</li>
+          <li>FlexTool</li><li>PowerWorld</li><li>Simulink</li><li>Multisim</li>
         </ul>
       </div>
-
-      <div class="project-card reveal">
-        <div class="project-num">Project 02</div>
-        <div class="project-title">National Electricity Demand Forecasting Model</div>
-        <p class="project-desc">
-          Deep learning–based short-term demand forecasting system using 10+ years of
-          national load data, achieving significant accuracy improvements over baseline statistical models.
-        </p>
-        <ul class="project-highlights">
-          <li>Processed 10,000+ time-series records from national electricity datasets</li>
-          <li>Achieved 8–12% improvement in forecasting accuracy using LSTM/ANN</li>
-          <li>Built interactive dashboards in Power BI and Google Data Studio for demand projection visualization</li>
+      <div class="exp-col reveal reveal-delay-1">
+        <div class="exp-col-title">Data &amp; Analytics</div>
+        <ul class="exp-items">
+          <li>Python (pandas, sklearn)</li><li>R</li>
+          <li>LSTM / ANN</li><li>Time-Series Analysis</li>
+          <li>Forecasting Models</li><li>Statistical Methods</li>
+        </ul>
+      </div>
+      <div class="exp-col reveal reveal-delay-2">
+        <div class="exp-col-title">Visualization</div>
+        <ul class="exp-items">
+          <li>Power BI</li><li>Google Data Studio</li>
+          <li>Dashboard Design</li><li>KPI Frameworks</li>
+          <li>Interactive Reports</li>
+        </ul>
+      </div>
+      <div class="exp-col reveal reveal-delay-3">
+        <div class="exp-col-title">Domains</div>
+        <ul class="exp-items">
+          <li>National Energy Planning</li><li>Distribution Operations</li>
+          <li>Demand Forecasting</li><li>Energy Transition</li>
+          <li>Policy &amp; Regulation</li><li>Smart Grids / IoT</li>
         </ul>
       </div>
     </div>
   </div>
 </div>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="reveal">
-    <div class="section-label">Academic Background</div>
-    <h2 class="section-title">Education</h2>
-    <div class="divider"></div>
-  </div>
-  <div class="edu-grid reveal">
-    <div class="edu-card">
-      <div class="edu-degree">Masters in Electrical Engineering</div>
-      <div class="edu-school">University of Engineering and Technology — Lahore, Pakistan</div>
-      <div class="edu-meta">
-        <span class="edu-badge">June 2022</span>
-        <span class="edu-badge">CGPA: 3.88 / 4.0</span>
+<!-- PROCESS -->
+<div class="section" id="process">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">How I Work</div>
+      <h2>A clear process,<br><em>every time</em></h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-arrow">→</div>
+        <div class="step-num">01</div>
+        <div class="step-title">Scope &amp; Discovery</div>
+        <p class="step-desc">We clarify objectives, data availability, timelines, and success criteria before any work begins.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-arrow">→</div>
+        <div class="step-num">02</div>
+        <div class="step-title">Data &amp; Analysis</div>
+        <p class="step-desc">I collect, validate, and analyze relevant datasets using appropriate statistical or ML methods.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-arrow">→</div>
+        <div class="step-num">03</div>
+        <div class="step-title">Modeling &amp; Insights</div>
+        <p class="step-desc">Scenarios are developed, models are built, and results are interpreted in context of your actual decisions.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-num">04</div>
+        <div class="step-title">Reporting &amp; Handoff</div>
+        <p class="step-desc">Findings are delivered as dashboards, policy briefs, or technical reports — ready for stakeholders.</p>
       </div>
     </div>
-    <div class="edu-card">
-      <div class="edu-degree">Bachelors in Electrical Engineering</div>
-      <div class="edu-school">University of Engineering and Technology — Lahore, Pakistan</div>
-      <div class="edu-meta">
-        <span class="edu-badge">June 2018</span>
-        <span class="edu-badge">CGPA: 3.40 / 4.0</span>
-      </div>
-    </div>
   </div>
+</div>
 
-  <!-- Certifications -->
-  <div style="margin-top:4rem">
-    <div class="reveal" style="margin-bottom:2rem">
-      <div class="section-label">Professional Development</div>
-      <h3 class="section-title" style="font-size:1.8rem">Certifications &amp; Training</h3>
+<!-- BACKGROUND -->
+<div class="section services-bg" id="background">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Background</div>
+      <h2>Where the expertise<br><em>was built</em></h2>
     </div>
-    <div class="certs-grid">
-      <div class="cert-card reveal">
-        <div class="cert-icon">🏛</div>
-        <div>
-          <div class="cert-name">Team Building &amp; Effective Decision Making</div>
-          <div class="cert-org">Pakistan Institute of Management</div>
+    <div class="cred-grid">
+      <div class="cred-card reveal">
+        <div class="cred-org">Power Planning &amp; Monitoring Co.</div>
+        <div class="cred-role">Assistant Specialist Planning · 2025–Present</div>
+        <p class="cred-desc">Contributing to Pakistan's Integrated Energy Planning — demand forecasting, sector KPI monitoring, and policy briefs for government stakeholders.</p>
+      </div>
+      <div class="cred-card reveal reveal-delay-1">
+        <div class="cred-org">Lahore Electric Supply Co. (LESCO)</div>
+        <div class="cred-role">Assistant Manager Operations · 2021–2025</div>
+        <p class="cred-desc">Managed LV/HV distribution networks, analyzed energy loss trends, and developed automated tools for performance monitoring across large-scale infrastructure.</p>
+      </div>
+      <div class="cred-card reveal reveal-delay-2">
+        <div class="cred-org">LUMS Energy Institute</div>
+        <div class="cred-role">Research Assistant · 2018–2021</div>
+        <p class="cred-desc">Developed deep learning forecasting models, conducted load flow simulations, and built data dashboards for energy systems research projects.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:4rem">
+      <div class="reveal" style="margin-bottom:2rem">
+        <div class="eyebrow">Research</div>
+        <h2>IEEE Publications</h2>
+      </div>
+      <div>
+        <div class="pub-row reveal">
+          <span class="pub-year-badge">ICIP 2021</span>
+          <div>
+            <div class="pub-title-text">Spatio-temporal Crop Classification on Volumetric Data</div>
+            <div class="pub-venue-text">M. U. Qadeer, S. Saeed, M. Taj &amp; M. Abubakr · IEEE ICIP 2021</div>
+          </div>
+          <span class="pub-venue-badge">IEEE</span>
+        </div>
+        <div class="pub-row reveal">
+          <span class="pub-year-badge">RAEE 2019</span>
+          <div>
+            <div class="pub-title-text">Wireless Mesh Network for IoT-based Smart Homes</div>
+            <div class="pub-venue-text">M. U. Qadeer et al. · IEEE RAEE Vol. 4, pp. 1–6 · 2019</div>
+          </div>
+          <span class="pub-venue-badge">IEEE</span>
         </div>
       </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon">🧠</div>
-        <div>
-          <div class="cert-name">Emotional Intelligence for Workplace</div>
-          <div class="cert-org">Pakistan Institute of Management</div>
-        </div>
+    </div>
+
+    <div style="margin-top:4rem">
+      <div class="reveal" style="margin-bottom:2rem">
+        <div class="eyebrow">Education</div>
+        <h2>Academic Foundation</h2>
       </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon">⚡</div>
-        <div>
-          <div class="cert-name">Financial Analysis of Power Sector Projects Using FINPLAN</div>
-          <div class="cert-org">The Open University</div>
+      <div class="cred-grid">
+        <div class="cred-card reveal">
+          <div class="cred-org">M.S. Electrical Engineering</div>
+          <div class="cred-role">UET Lahore · June 2022 · CGPA 3.88/4.0</div>
+          <p class="cred-desc">Thesis focused on deep learning optimization for energy forecasting systems.</p>
         </div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon">🌱</div>
-        <div>
-          <div class="cert-name">Energy &amp; Flexibility Modelling: OSeMOSYS &amp; FlexTool</div>
-          <div class="cert-org">The Open University</div>
+        <div class="cred-card reveal reveal-delay-1">
+          <div class="cred-org">B.S. Electrical Engineering</div>
+          <div class="cred-role">UET Lahore · June 2018 · CGPA 3.40/4.0</div>
+          <p class="cred-desc">Foundation in power systems, electrical networks, signal processing, and control engineering.</p>
         </div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon">🤖</div>
-        <div>
-          <div class="cert-name">Deep Learning Specialization</div>
-          <div class="cert-org">deeplearning.ai</div>
+        <div class="cred-card reveal reveal-delay-2">
+          <div class="cred-org">Certifications</div>
+          <div class="cred-role">deeplearning.ai · The Open University · PIM</div>
+          <p class="cred-desc">Deep Learning Specialization · OSeMOSYS &amp; FlexTool · FINPLAN Financial Analysis · Leadership &amp; Decision Making</p>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- PUBLICATIONS -->
-<div class="skills-section" id="publications">
-  <div class="skills-inner">
-    <div class="reveal">
-      <div class="section-label">Research</div>
-      <h2 class="section-title">IEEE Publications</h2>
-      <div class="divider"></div>
+<!-- CTA -->
+<div class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Ready to work together?</h2>
+      <p>Whether you need a forecasting model, a planning report, or an analytical partner — let's talk.</p>
     </div>
-    <div class="pub-list">
-      <div class="pub-card reveal">
-        <div class="pub-year">2021</div>
-        <div>
-          <div class="pub-title">Spatio-temporal Crop Classification on Volumetric Data</div>
-          <div class="pub-venue">International Conference on Image Processing (ICIP) 2021 — Muhammad Usman Qadeer, Salar Saeed, Murtaza Taj &amp; Muhammad Abubakr</div>
-        </div>
-      </div>
-      <div class="pub-card reveal">
-        <div class="pub-year">2019</div>
-        <div>
-          <div class="pub-title">Implementation of Wireless Mesh Network for IoT based Smart Homes</div>
-          <div class="pub-venue">International Symposium on Recent Advances in Electrical Engineering (RAEE), Vol. 4, pp. 1–6. IEEE — Muhammad Usman Qadeer, Sheroze Liaquat, Muhammad Ali Shafique &amp; Abdul Rahman Kashif</div>
-        </div>
-      </div>
-    </div>
+    <a href="mailto:usmanqadeer@yahoo.com" class="btn-white">Send me a message →</a>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-name">Muhammad Usman Qadeer</div>
-  <div class="footer-sub">Energy Systems Analyst · Pakistan</div>
-  <ul class="footer-links">
-    <li><a href="mailto:usmanqadeer@yahoo.com">Email</a></li>
-    <li><a href="tel:+923364484413">Phone</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-  </ul>
-  <div class="footer-copy">© 2025 Muhammad Usman Qadeer. All rights reserved.</div>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="brand-name">Muhammad Usman Qadeer</div>
+      <div class="brand-sub">Energy Systems Consultant · Lahore, Pakistan</div>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:usmanqadeer@yahoo.com">usmanqadeer@yahoo.com</a>
+      <a href="tel:+923364484413">+92 336 448 4413</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Muhammad Usman Qadeer</span>
+    <span>Energy Systems · Data Analytics · Policy Research</span>
+  </div>
 </footer>
 
 <script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  ;(function tick() {
+    if (cursor) { cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; }
+    if (ring) {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  // Hover cursor expand
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; ring.style.width = '60px'; ring.style.height = '60px'; ring.style.opacity = '0.15'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width = '10px'; cursor.style.height = '10px'; ring.style.width = '36px'; ring.style.height = '36px'; ring.style.opacity = '0.5'; });
+  });
+
   // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => observer.observe(el));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => obs.observe(el));
 
-  // Smooth nav highlight
-  const sections = document.querySelectorAll('section[id], div[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  // Nav active
+  const navAnchors = document.querySelectorAll('.nav-links a:not(.nav-cta)');
   window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
+    let cur = '';
+    ['services','why','expertise','process','background'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 200) cur = id;
     });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
-    });
+    navAnchors.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--ink)' : ''; });
   });
 </script>
 </body>
