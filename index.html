@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Usman Qadeer — Energy Systems Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0f1a;
+      --bg2: #0f1625;
+      --card: #131c2e;
+      --card2: #192236;
+      --accent: #00d4a8;
+      --accent2: #0099ff;
+      --accent3: #7b5ea7;
+      --text: #e8edf5;
+      --muted: #7b8fb5;
+      --border: rgba(0, 212, 168, 0.15);
+      --glow: rgba(0, 212, 168, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(10, 15, 26, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,212,168,0.06) 0%, transparent 70%);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      left: -5%;
+      width: 40vw;
+      height: 40vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,153,255,0.05) 0%, transparent 70%);
+    }
+    /* Grid lines background */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,168,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,168,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,212,168,0.1);
+      border: 1px solid rgba(0,212,168,0.25);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero-title-line2 {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(232,237,245,0.4);
+    }
+    .hero-subtitle {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-desc {
+      max-width: 600px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0f1a;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary:hover {
+      background: #00f0c0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,212,168,0.3);
+    }
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      font-weight: 400;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      animation: fadeLeft 0.8s 0.5s ease both;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      min-width: 160px;
+    }
+    .stat-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateX(40px) translateY(-50%); }
+      to { opacity: 1; transform: translateX(0) translateY(-50%); }
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+      line-height: 1.1;
+    }
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+      border-radius: 2px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .contact-list .icon {
+      width: 32px;
+      height: 32px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* SKILLS */
+    .skills-section { background: var(--bg2); padding: 6rem 4rem; }
+    .skills-inner { max-width: 1200px; margin: 0 auto; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-category {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .skill-category:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,212,168,0.35);
+    }
+    .skill-cat-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      background: rgba(0,212,168,0.07);
+      border: 1px solid rgba(0,212,168,0.15);
+      color: var(--text);
+      font-size: 0.8rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+    }
+
+    /* EXPERIENCE */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+      padding-left: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease both;
+    }
+    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+    .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.4rem;
+      top: 0.4rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(0,212,168,0.2);
+    }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-company {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .timeline-period {
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: rgba(0,212,168,0.08);
+      border: 1px solid rgba(0,212,168,0.2);
+      padding: 0.2rem 0.8rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .timeline-role {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .timeline-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .timeline-bullets li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .timeline-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 0.2rem;
+    }
+
+    /* PROJECTS */
+    .projects-section { background: var(--bg2); padding: 6rem 4rem; }
+    .projects-inner { max-width: 1200px; margin: 0 auto; }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,212,168,0.3);
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .project-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .project-highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .project-highlights li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .project-highlights li::before {
+      content: '✦';
+      color: var(--accent);
+      font-size: 0.6rem;
+      flex-shrink: 0;
+      margin-top: 0.35rem;
+    }
+
+    /* EDUCATION */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .edu-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,212,168,0.35);
+    }
+    .edu-degree {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .edu-school {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .edu-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .edu-badge {
+      font-size: 0.8rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 100px;
+      background: rgba(0,153,255,0.1);
+      border: 1px solid rgba(0,153,255,0.2);
+      color: var(--accent2);
+    }
+
+    /* CERTIFICATIONS */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .cert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cert-card:hover {
+      border-color: rgba(0,212,168,0.3);
+      transform: translateY(-2px);
+    }
+    .cert-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(0,212,168,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .cert-name {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+      line-height: 1.4;
+    }
+    .cert-org {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* PUBLICATIONS */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .pub-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .pub-card:hover { border-color: rgba(0,212,168,0.3); }
+    .pub-year {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.4;
+      min-width: 56px;
+    }
+    .pub-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
+    }
+    .pub-venue {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 3rem 4rem;
+      text-align: center;
+    }
+    .footer-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .footer-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      list-style: none;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy {
+      margin-top: 2rem;
+      font-size: 0.78rem;
+      color: rgba(123,143,181,0.4);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { padding: 7rem 2rem 4rem; }
+      section { padding: 5rem 2rem; }
+      .about-grid,
+      .projects-grid,
+      .edu-grid { grid-template-columns: 1fr; }
+      .hero-stats { display: none; }
+      .skills-section, .projects-section { padding: 5rem 2rem; }
+      footer { padding: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">MUQ</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#publications">Publications</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home" style="max-width:100%;padding:8rem 4rem 4rem;">
+  <div class="hero-bg"><div class="hero-grid"></div></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1>
+      Muhammad<br>
+      <span class="hero-title-line2">Usman Qadeer</span>
+    </h1>
+    <div class="hero-subtitle">Energy Systems Analyst</div>
+    <p class="hero-desc">
+      Electrical Engineer with 7+ years of experience in energy system analysis,
+      demand forecasting, and power distribution operations. Currently shaping
+      Pakistan's national energy planning at PPMC.
+    </p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn-primary">View Experience →</a>
+      <a href="mailto:usmanqadeer@yahoo.com" class="btn-outline">Get in Touch</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">7+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3.88</div>
+        <div class="stat-label">Masters CGPA</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2</div>
+        <div class="stat-label">IEEE Publications</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">About Me</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm an Electrical Engineer specializing in energy system analysis, market research,
+        and power distribution operations. Currently serving as Assistant Specialist Planning
+        at the Power Planning and Monitoring Company (PPMC) in Islamabad, where I contribute
+        to Pakistan's Integrated Energy Planning (IEP).
+      </p>
+      <p>
+        My work bridges research and operations — from developing deep learning–based demand
+        forecasting models at LUMS to managing LV/HV distribution networks at LESCO.
+        I'm passionate about data-driven approaches to energy transition and sustainable power systems.
+      </p>
+      <p>
+        With a strong foundation in Python, deep learning, and energy modeling tools (OSeMOSYS, LEAP),
+        I translate complex energy datasets into actionable insights for policy and investment decisions.
+      </p>
+    </div>
+    <div class="reveal">
+      <ul class="contact-list">
+        <li>
+          <span class="icon">📍</span>
+          Pakistan
+        </li>
+        <li>
+          <span class="icon">📧</span>
+          usmanqadeer@yahoo.com
+        </li>
+        <li>
+          <span class="icon">📞</span>
+          +92 336 4484413
+        </li>
+        <li>
+          <span class="icon">🎓</span>
+          M.S. Electrical Engineering — UET Lahore
+        </li>
+        <li>
+          <span class="icon">⚡</span>
+          Energy Systems &amp; National Planning
+        </li>
+        <li>
+          <span class="icon">🔬</span>
+          2× IEEE Published Researcher
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="skills-section" id="skills">
+  <div class="skills-inner">
+    <div class="reveal">
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category reveal">
+        <div class="skill-cat-title">⚡ Energy &amp; Power Systems</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PowerWorld Simulator</span>
+          <span class="skill-tag">LEAP</span>
+          <span class="skill-tag">OSeMOSYS</span>
+          <span class="skill-tag">FINPLAN</span>
+          <span class="skill-tag">Multisim</span>
+          <span class="skill-tag">Simulink</span>
+          <span class="skill-tag">FlexTool</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-title">📊 Data Analysis &amp; Visualization</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">R</span>
+          <span class="skill-tag">Google Data Studio</span>
+          <span class="skill-tag">Forecasting Models</span>
+          <span class="skill-tag">LSTM / ANN</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-title">🧠 Machine Learning</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Deep Learning</span>
+          <span class="skill-tag">Time-Series Analysis</span>
+          <span class="skill-tag">Demand Forecasting</span>
+          <span class="skill-tag">Load Flow Studies</span>
+          <span class="skill-tag">Pattern Recognition</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-title">🛠 Tools &amp; Other</div>
+        <div class="skill-tags">
+          <span class="skill-tag">KPI Tracking</span>
+          <span class="skill-tag">Dashboard Development</span>
+          <span class="skill-tag">MS Office</span>
+          <span class="skill-tag">Embedded C</span>
+          <span class="skill-tag">Documentation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Work Experience</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-company">Power Planning &amp; Monitoring Company (PPMC)</div>
+        <span class="timeline-period">Oct 2025 – Present</span>
+      </div>
+      <div class="timeline-role">Assistant Specialist Planning — Islamabad, Pakistan</div>
+      <ul class="timeline-bullets">
+        <li>Contribute to Integrated Energy Planning (IEP) by collecting, validating, and analyzing national energy sector datasets.</li>
+        <li>Support medium- and long-term electricity demand and supply forecasting using statistical and analytical tools.</li>
+        <li>Conduct sector research on energy consumption patterns, generation capacity, and policy impacts.</li>
+        <li>Prepare analytical reports, dashboards, and policy briefs for internal teams and government stakeholders.</li>
+        <li>Coordinate with utilities, regulators, and government institutions to support evidence-based energy planning.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-company">Lahore Electric Supply Company (LESCO)</div>
+        <span class="timeline-period">Apr 2021 – Sep 2025</span>
+      </div>
+      <div class="timeline-role">Assistant Manager Operations — Lahore, Pakistan</div>
+      <ul class="timeline-bullets">
+        <li>Managed operation and performance monitoring of LV/HV power distribution networks, transformers, and metering systems.</li>
+        <li>Analyzed energy loss trends, billing performance, and network efficiency metrics using operational data.</li>
+        <li>Led installation of capacitor banks, D-fuses, HV poles, and control panels to enhance grid efficiency.</li>
+        <li>Developed automated tools to streamline energy data analysis and performance monitoring.</li>
+        <li>Conducted data-driven analysis of distribution performance to support operational planning and investment decisions.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-company">LUMS Energy Institute</div>
+        <span class="timeline-period">Sep 2018 – Apr 2021</span>
+      </div>
+      <div class="timeline-role">Research Assistant — Lahore, Pakistan</div>
+      <ul class="timeline-bullets">
+        <li>Conducted simulations and load flow studies using PowerWorld and Simulink to optimize grid reliability.</li>
+        <li>Developed short-term energy forecasting models using deep learning techniques (LSTM/ANN).</li>
+        <li>Built performance dashboards with Google Data Studio and Python for energy system monitoring.</li>
+        <li>Performed data analysis and visualization for energy systems research projects.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:var(--muted);box-shadow:none;"></div>
+      <div class="timeline-header">
+        <div class="timeline-company">Pak Elektron Limited (PEL)</div>
+        <span class="timeline-period">Jun – Aug 2016</span>
+      </div>
+      <div class="timeline-role">Engineering Intern</div>
+      <ul class="timeline-bullets">
+        <li>Gained exposure to manufacturing and testing processes of energy meters and distribution transformers.</li>
+        <li>Observed equipment testing and quality assurance procedures in meter and transformer production.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<div class="projects-section" id="projects">
+  <div class="projects-inner">
+    <div class="reveal">
+      <div class="section-label">Portfolio</div>
+      <h2 class="section-title">Key Projects</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-num">Project 01</div>
+        <div class="project-title">Integrated Energy Planning (IEP)</div>
+        <p class="project-desc">
+          National-scale energy planning initiative contributing to Pakistan's
+          long-term energy transition strategy, covering generation, transmission,
+          and final consumption analysis.
+        </p>
+        <ul class="project-highlights">
+          <li>Collected and analyzed multi-sector energy datasets from national reports and policy documents</li>
+          <li>Utilized OSeMOSYS and LEAP for scenario development and demand projections</li>
+          <li>Produced analytical briefs used by planning teams for national energy policy development</li>
+        </ul>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">Project 02</div>
+        <div class="project-title">National Electricity Demand Forecasting Model</div>
+        <p class="project-desc">
+          Deep learning–based short-term demand forecasting system using 10+ years of
+          national load data, achieving significant accuracy improvements over baseline statistical models.
+        </p>
+        <ul class="project-highlights">
+          <li>Processed 10,000+ time-series records from national electricity datasets</li>
+          <li>Achieved 8–12% improvement in forecasting accuracy using LSTM/ANN</li>
+          <li>Built interactive dashboards in Power BI and Google Data Studio for demand projection visualization</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-label">Academic Background</div>
+    <h2 class="section-title">Education</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="edu-grid reveal">
+    <div class="edu-card">
+      <div class="edu-degree">Masters in Electrical Engineering</div>
+      <div class="edu-school">University of Engineering and Technology — Lahore, Pakistan</div>
+      <div class="edu-meta">
+        <span class="edu-badge">June 2022</span>
+        <span class="edu-badge">CGPA: 3.88 / 4.0</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Bachelors in Electrical Engineering</div>
+      <div class="edu-school">University of Engineering and Technology — Lahore, Pakistan</div>
+      <div class="edu-meta">
+        <span class="edu-badge">June 2018</span>
+        <span class="edu-badge">CGPA: 3.40 / 4.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certifications -->
+  <div style="margin-top:4rem">
+    <div class="reveal" style="margin-bottom:2rem">
+      <div class="section-label">Professional Development</div>
+      <h3 class="section-title" style="font-size:1.8rem">Certifications &amp; Training</h3>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon">🏛</div>
+        <div>
+          <div class="cert-name">Team Building &amp; Effective Decision Making</div>
+          <div class="cert-org">Pakistan Institute of Management</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🧠</div>
+        <div>
+          <div class="cert-name">Emotional Intelligence for Workplace</div>
+          <div class="cert-org">Pakistan Institute of Management</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">⚡</div>
+        <div>
+          <div class="cert-name">Financial Analysis of Power Sector Projects Using FINPLAN</div>
+          <div class="cert-org">The Open University</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🌱</div>
+        <div>
+          <div class="cert-name">Energy &amp; Flexibility Modelling: OSeMOSYS &amp; FlexTool</div>
+          <div class="cert-org">The Open University</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🤖</div>
+        <div>
+          <div class="cert-name">Deep Learning Specialization</div>
+          <div class="cert-org">deeplearning.ai</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<div class="skills-section" id="publications">
+  <div class="skills-inner">
+    <div class="reveal">
+      <div class="section-label">Research</div>
+      <h2 class="section-title">IEEE Publications</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="pub-list">
+      <div class="pub-card reveal">
+        <div class="pub-year">2021</div>
+        <div>
+          <div class="pub-title">Spatio-temporal Crop Classification on Volumetric Data</div>
+          <div class="pub-venue">International Conference on Image Processing (ICIP) 2021 — Muhammad Usman Qadeer, Salar Saeed, Murtaza Taj &amp; Muhammad Abubakr</div>
+        </div>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-year">2019</div>
+        <div>
+          <div class="pub-title">Implementation of Wireless Mesh Network for IoT based Smart Homes</div>
+          <div class="pub-venue">International Symposium on Recent Advances in Electrical Engineering (RAEE), Vol. 4, pp. 1–6. IEEE — Muhammad Usman Qadeer, Sheroze Liaquat, Muhammad Ali Shafique &amp; Abdul Rahman Kashif</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Muhammad Usman Qadeer</div>
+  <div class="footer-sub">Energy Systems Analyst · Pakistan</div>
+  <ul class="footer-links">
+    <li><a href="mailto:usmanqadeer@yahoo.com">Email</a></li>
+    <li><a href="tel:+923364484413">Phone</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Muhammad Usman Qadeer. All rights reserved.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+    });
+  });
+</script>
+</body>
+</html>
